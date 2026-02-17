@@ -244,3 +244,6 @@ docker run --rm -i --network host grafana/k6 run - < docs/loadtest/k6-pricing-rp
 5. Include migrations and sample data (`V1`, `V2`).
 6. Include test instructions and load-test script.
 7. Share repository URL in submission.
+
+Detailed requirement mapping file:
+- `docs/ASSIGNMENT-CHECKLIST.md`
