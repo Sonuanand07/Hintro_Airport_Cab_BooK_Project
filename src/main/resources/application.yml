@@ -1,0 +1,71 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/airport_pooling}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    hikari:
+      maximum-pool-size: 40
+      minimum-idle: 10
+      connection-timeout: 2000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 20
+    accept-count: 200
+
+pooling:
+  airport:
+    lat: 40.6413
+    lng: -73.7781
+  time-window-minutes: 15
+  max-seats-per-group: 4
+  max-luggage-per-group: 4
+  matching:
+    batch-size: 100
+    interval-ms: 1000
+  pricing:
+    base-fare: 5.0
+    per-km: 1.2
+    shared-discount-per-extra: 0.1
+    max-shared-discount: 0.3
+    surge-base: 1.0
+  detour:
+    default-max-pct: 25.0
+
+redis:
+  cache-ttl-seconds: 60
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true

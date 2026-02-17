@@ -1,0 +1,361 @@
+{
+  "info": {
+    "name": "Smart Airport Ride Pooling API",
+    "description": "Complete API collection for airport ride pooling system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Passengers",
+      "item": [
+        {
+          "name": "Create Passenger",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"+1-555-0001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/passengers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "passengers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Passenger",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/passengers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "passengers", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cabs",
+      "item": [
+        {
+          "name": "Create Cab",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plateNumber\": \"NYC-5001\",\n  \"seatCapacity\": 4,\n  \"luggageCapacity\": 4\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/cabs",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "cabs"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Cabs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/cabs",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "cabs"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ride Requests",
+      "item": [
+        {
+          "name": "Create TO_AIRPORT Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passengerId\": 1,\n  \"direction\": \"TO_AIRPORT\",\n  \"pickupLat\": 40.7128,\n  \"pickupLng\": -74.0060,\n  \"dropoffLat\": 40.6413,\n  \"dropoffLng\": -73.7781,\n  \"seatsRequired\": 1,\n  \"luggageUnits\": 1,\n  \"maxDetourPct\": 25.0,\n  \"desiredPickupTime\": \"2024-02-17T15:30:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/requests",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "requests"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create FROM_AIRPORT Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passengerId\": 2,\n  \"direction\": \"FROM_AIRPORT\",\n  \"pickupLat\": 40.6413,\n  \"pickupLng\": -73.7781,\n  \"dropoffLat\": 40.7580,\n  \"dropoffLng\": -73.9855,\n  \"seatsRequired\": 1,\n  \"luggageUnits\": 2,\n  \"maxDetourPct\": 20.0,\n  \"desiredPickupTime\": \"2024-02-17T16:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/requests",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "requests"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Request",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/requests/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "requests", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Request",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/requests/1/cancel",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "requests", "1", "cancel"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ride Groups",
+      "item": [
+        {
+          "name": "List Groups",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/groups",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "groups"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Group with Members",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/groups/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "groups", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Matching & Pricing",
+      "item": [
+        {
+          "name": "Run Matching Batch",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/match/run",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "match", "run"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estimate Fare - Single Passenger",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/pricing/estimate?direction=TO_AIRPORT&pickupLat=40.7128&pickupLng=-74.0060&dropoffLat=40.6413&dropoffLng=-73.7781&groupSize=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pricing", "estimate"],
+              "query": [
+                {
+                  "key": "direction",
+                  "value": "TO_AIRPORT"
+                },
+                {
+                  "key": "pickupLat",
+                  "value": "40.7128"
+                },
+                {
+                  "key": "pickupLng",
+                  "value": "-74.0060"
+                },
+                {
+                  "key": "dropoffLat",
+                  "value": "40.6413"
+                },
+                {
+                  "key": "dropoffLng",
+                  "value": "-73.7781"
+                },
+                {
+                  "key": "groupSize",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estimate Fare - 3 Passengers (Shared)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/pricing/estimate?direction=TO_AIRPORT&pickupLat=40.7128&pickupLng=-74.0060&dropoffLat=40.6413&dropoffLng=-73.7781&groupSize=3",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pricing", "estimate"],
+              "query": [
+                {
+                  "key": "direction",
+                  "value": "TO_AIRPORT"
+                },
+                {
+                  "key": "pickupLat",
+                  "value": "40.7128"
+                },
+                {
+                  "key": "pickupLng",
+                  "value": "-74.0060"
+                },
+                {
+                  "key": "dropoffLat",
+                  "value": "40.6413"
+                },
+                {
+                  "key": "dropoffLng",
+                  "value": "-73.7781"
+                },
+                {
+                  "key": "groupSize",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health & Docs",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/actuator/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["actuator", "health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/swagger-ui.html",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["swagger-ui.html"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "OpenAPI JSON",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api-docs",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api-docs"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

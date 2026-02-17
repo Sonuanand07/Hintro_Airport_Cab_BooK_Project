@@ -1,0 +1,232 @@
+{
+  "info": {
+    "name": "Smart Airport Ride Pooling API",
+    "description": "Postman collection for Smart Airport Ride Pooling backend assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "passengerId",
+      "value": "1"
+    },
+    {
+      "key": "requestId",
+      "value": "1"
+    },
+    {
+      "key": "groupId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Actuator Health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Passengers",
+      "item": [
+        {
+          "name": "Create Passenger",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"phone\": \"555-1111\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/passengers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "passengers"]
+            }
+          }
+        },
+        {
+          "name": "Get Passenger",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/passengers/{{passengerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "passengers", "{{passengerId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cabs",
+      "item": [
+        {
+          "name": "Create Cab",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plateNumber\": \"NYC-2001\",\n  \"seatCapacity\": 4,\n  \"luggageCapacity\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cabs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cabs"]
+            }
+          }
+        },
+        {
+          "name": "List Cabs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/cabs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cabs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Requests",
+      "item": [
+        {
+          "name": "Create Ride Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passengerId\": {{passengerId}},\n  \"direction\": \"TO_AIRPORT\",\n  \"pickupLat\": 40.7580,\n  \"pickupLng\": -73.9855,\n  \"dropoffLat\": 40.6413,\n  \"dropoffLng\": -73.7781,\n  \"seatsRequired\": 1,\n  \"luggageUnits\": 1,\n  \"maxDetourPct\": 25,\n  \"desiredPickupTime\": \"2026-02-18T12:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/requests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "requests"]
+            }
+          }
+        },
+        {
+          "name": "Get Ride Request",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "requests", "{{requestId}}"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Ride Request",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "requests", "{{requestId}}", "cancel"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Matching",
+      "item": [
+        {
+          "name": "Run Match",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/match/run",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "match", "run"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Groups",
+      "item": [
+        {
+          "name": "List Groups",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/groups",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "groups"]
+            }
+          }
+        },
+        {
+          "name": "Get Group",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/groups/{{groupId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "groups", "{{groupId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "item": [
+        {
+          "name": "Estimate Price",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/pricing/estimate?direction=TO_AIRPORT&pickupLat=40.7580&pickupLng=-73.9855&dropoffLat=40.6413&dropoffLng=-73.7781&groupSize=2",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pricing", "estimate"],
+              "query": [
+                { "key": "direction", "value": "TO_AIRPORT" },
+                { "key": "pickupLat", "value": "40.7580" },
+                { "key": "pickupLng", "value": "-73.9855" },
+                { "key": "dropoffLat", "value": "40.6413" },
+                { "key": "dropoffLng", "value": "-73.7781" },
+                { "key": "groupSize", "value": "2" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
